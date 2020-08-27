@@ -14,4 +14,7 @@ public class Hello {
     public String hello() {
         return "hello " + envname;
     }
+
+    @GetMapping("/world")
+    public String world() { return "world"; }
 }
