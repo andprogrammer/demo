@@ -29,3 +29,36 @@ stream                                 v1                    7c4ec477a2a9       
 stream_prod                            v1                    7c4ec477a2a9        3 minutes ago       121MB
 stream_test                            v1                    7c4ec477a2a9        3 minutes ago       121MB
 ```
+
+## ELK
+#### elasticsearch:
+http://localhost:9200
+
+#### kibana:
+http://localhost:5601
+
+#### logstash:
+```shell script
+./bin/logstash -f myLogback.conf
+```
+http://localhost:9600
+
+myLogback.conf
+```shell script
+input {
+    file {
+        path => "/home/laptop/IdeaProjects/demo/logs/*.log"
+        codec => "json"
+        type => "logback"
+    }
+}
+ 
+output {
+    if [type]=="logback" {
+         elasticsearch {
+             hosts => [ "localhost:9200" ]
+             index => "logback-%{+YYYY.MM.dd}"
+        }
+    }
+}
+```
