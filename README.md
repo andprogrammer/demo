@@ -1,6 +1,10 @@
 # demo
 Demo restful springboot java application
 
+Run from Intellij:  
+http://localhost:8080/hello  
+http://localhost:8080/world
+
 ## Dockerfile
 ```dockerfile
 docker build -f Dockerfile -t stream:v1 .
